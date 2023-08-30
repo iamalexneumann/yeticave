@@ -48,6 +48,10 @@ $ads = [
         'img_url' => 'img/lot-6.jpg',
     ],
 ];
+function formart_price($price): string
+{
+    return number_format(ceil($price), 0, '', ' ') . ' ₽';
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -119,11 +123,11 @@ $ads = [
                 </div>
                 <div class="lot__info">
                     <span class="lot__category"><?= $ad_item['category']; ?></span>
-                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= $ad_item['title']; ?></a></h3>
+                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= htmlspecialchars($ad_item['title']); ?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?= $ad_item['price']; ?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?= formart_price(htmlspecialchars($ad_item['price'])); ?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
